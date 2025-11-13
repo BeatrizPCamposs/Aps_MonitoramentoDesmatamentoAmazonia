@@ -1,0 +1,585 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Green Amazon - Desmatamento na Amazônia</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green: #4CAF50;
+      --green-dark: #2E7D32;
+      --dark-bg: #0a0a0a;
+      --text-light: #fff;
+      --text-gray: #d0d0d0;
+      --max-width: 1200px;
+      --nav-height: 70px;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      height: 100%;
+      font-family: "Poppins", sans-serif;
+      scroll-behavior: smooth;
+    }
+    body {
+      background: #fff;
+      color: #333;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    /* ========== HEADER ========== */
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--nav-height);
+      z-index: 1000;
+      background: rgba(0, 0, 0, 0.88);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .header-container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 32px;
+      height: var(--nav-height);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .brand-name {
+      color: var(--text-light);
+      font-weight: 700;
+      font-size: 17px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .brand-accent {
+      color: var(--green);
+    }
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+    .main-nav .nav-link {
+      color: var(--text-gray);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 15px;
+      transition: color 0.3s;
+    }
+    .main-nav .nav-link:hover {
+      color: var(--text-light);
+    }
+    .btn-contact {
+      background: var(--green);
+      color: white;
+      padding: 9px 22px;
+      border-radius: 6px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.3s;
+      font-size: 15px;
+    }
+    .btn-contact:hover {
+      background: var(--green-dark);
+    }
+    /* ========== HERO SECTION ========== */
+    .hero {
+      position: relative;
+      margin-top: var(--nav-height);
+      min-height: 85vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+    .slides {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+    }
+    .slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 0.9s ease-in-out;
+      will-change: opacity;
+    }
+    .slide.visible {
+      opacity: 1;
+    }
+    .slide.s1 { background-image: url('img/img1.jpg'); }
+    .slide.s2 { background-image: url('img/img2.jpg'); }
+    .slide.s3 { background-image: url('img/img3.jpg'); }
+    /* Overlay verde escuro - SEM BLUR BRANCO */
+    .slide::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(10, 40, 30, 0.65) 0%,
+        rgba(5, 25, 20, 0.55) 50%,
+        rgba(0, 15, 10, 0.70) 100%
+      );
+      pointer-events: none;
+    }
+    .hero-wrapper {
+      position: relative;
+      z-index: 5;
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+    .hero-content {
+      max-width: 680px;
+      color: var(--text-light);
+    }
+    .hero-label {
+      color: var(--green);
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .hero-title {
+      font-size: 60px;
+      font-weight: 700;
+      line-height: 1.05;
+      margin: 0 0 20px 0;
+      color: var(--text-light);
+    }
+    .hero-title .title-green {
+      color: var(--green);
+      display: block;
+    }
+    .hero-description {
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.92);
+      line-height: 1.8;
+      margin-bottom: 28px;
+      text-align: justify; /* JUSTIFICADO */
+    }
+    .cta-button {
+      display: inline-block;
+      background: var(--green);
+      color: white;
+      padding: 13px 30px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      transition: all 0.3s;
+      box-shadow: 0 4px 14px rgba(76, 175, 80, 0.35);
+    }
+    .cta-button:hover {
+      background: var(--green-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(76, 175, 80, 0.45);
+    }
+    /* ========== IMPORTANCE SECTION ========== */
+    .importance {
+      padding: 100px 32px;
+      background: #ffffff;
+    }
+    .importance-wrapper {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    .section-title {
+      font-size: 42px;
+      font-weight: 800;
+      color: #1a1a1a;
+      margin-bottom: 40px;
+      line-height: 1.2;
+    }
+    .section-title .title-green {
+      color: var(--green);
+    }
+    .importance-text {
+      font-size: 16px;
+      color: #444;
+      line-height: 1.9;
+      margin-bottom: 24px;
+      text-align: justify; /* JUSTIFICADO */
+    }
+    .calculator-box {
+      background: #f7f7f7;
+      border-left: 5px solid var(--green);
+      border-radius: 10px;
+      padding: 36px;
+      margin-top: 32px;
+    }
+    .calculator-box h3 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #111;
+      margin-bottom: 12px;
+    }
+    .calculator-box p {
+      font-size: 16px;
+      color: #555;
+      line-height: 1.8;
+      text-align: justify; /* JUSTIFICADO */
+    }
+    /* ========== BLANK SECTION ========== */
+    .blank-section {
+      min-height: 300px;
+      background: #f5f5f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .blank-section p {
+      color: #999;
+      font-size: 16px;
+    }
+    /* ========== FOOTER ========== */
+    .site-footer {
+      background: var(--dark-bg);
+      color: var(--text-gray);
+      padding: 70px 32px 20px;
+    }
+    .footer-wrapper {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+    .footer-col h4 {
+      color: var(--text-light);
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .footer-col .icon {
+      color: var(--green);
+      font-size: 20px;
+    }
+    .footer-col p,
+    .footer-col a {
+      color: var(--text-gray);
+      text-decoration: none;
+      font-size: 14px;
+      line-height: 1.8;
+      display: block;
+      margin-bottom: 6px;
+    }
+    .footer-col a:hover {
+      color: var(--green);
+    }
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 20px;
+      text-align: center;
+      color: #888;
+      font-size: 14px;
+    }
+    .footer-bar {
+      height: 4px;
+      background: var(--green);
+      margin-top: 20px;
+      border-radius: 2px;
+    }
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 1024px) {
+      .hero-title {
+        font-size: 48px;
+      }
+      .section-title {
+        font-size: 36px;
+      }
+    }
+    @media (max-width: 768px) {
+      .main-nav .nav-link {
+        display: none;
+      }
+      .hero {
+        min-height: 70vh;
+      }
+      .hero-wrapper {
+        padding: 0 24px;
+      }
+      .hero-title {
+        font-size: 38px;
+      }
+      .hero-description {
+        font-size: 15px;
+      }
+      .section-title {
+        font-size: 30px;
+      }
+      .importance {
+        padding: 70px 24px;
+      }
+      .calculator-box {
+        padding: 28px 20px;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+    }
+    @media (max-width: 480px) {
+      .header-container {
+        padding: 0 20px;
+      }
+      .hero-title {
+        font-size: 32px;
+      }
+      .hero-label {
+        font-size: 12px;
+      }
+      .section-title {
+        font-size: 26px;
+      }
+    }
+    /* ========== DASHBOARD SECTION ========== */
+.dashboard-section {
+  padding: 80px 32px;
+  background: #f5f5f5; /* Mesmo fundo da seção em branco */
+}
+
+.dashboard-wrapper {
+  max-width: var(--max-width); /* Padrão do seu site */
+  margin: 0 auto;
+  text-align: center; /* Centralizar o título */
+}
+
+.dashboard-iframe-container {
+  width: 100%;
+  height: 750px; /* Altura boa para um dashboard */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden; /* Isso faz a borda arredondada funcionar */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.dashboard-iframe-container iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-container">
+      <div class="brand">
+        <span class="brand-icon"></span>
+        <div class="brand-name">GREEN <span class="brand-accent">AMAZON</span></div>
+      </div>
+      <nav class="main-nav" aria-label="Navegação principal">
+        <a class="nav-link" href="#home">Home</a>
+        <a class="nav-link" href="#sobre">Sobre</a>
+        <a class="btn-contact" href="#contato">Contato</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <!-- HERO -->
+    <section id="home" class="hero">
+      <div class="slides" aria-hidden="true">
+        <div class="slide s1"></div>
+        <div class="slide s2"></div>
+        <div class="slide s3"></div>
+      </div>
+      <div class="hero-wrapper">
+        <div class="hero-content">
+          <h1 class="hero-title">
+            DESMATAMENTO <span class="title-green">NA AMAZÔNIA</span>
+          </h1>
+          <p class="hero-description">
+            Uma ferramenta para Monitoramento do Desmatamento.<br><br>
+            Reunindo dados históricos do PRODES e alertas diários do DETER, a plataforma oferece uma ferramenta completa para acompanhar a evolução do desmatamento desde 2007 até os dias atuais. A partir dessas informações, usuários podem verificar danos, identificar padrões e compreender como as pressões ambientais têm se intensificado ao longo dos anos.
+          </p>
+          <a href="#sobre" class="cta-button">Saiba Mais</a>
+        </div>
+      </div>
+    </section>
+    <!-- IMPORTANCE -->
+    <section id="sobre" class="importance">
+      <div class="importance-wrapper">
+        <h2 class="section-title">
+          A Importância do Monitoramento do <span class="title-green">Desmatamento</span>
+        </h2>
+        <p class="importance-text">
+          O monitoramento do desmatamento na Amazônia é uma ferramenta essencial para compreender a magnitude das perdas ambientais e seus impactos globais. A Floresta Amazônica, que representa cerca de 50% da biodiversidade mundial, tem enfrentado taxas alarmantes de desmatamento impulsionadas por atividades como pecuária extensiva, agricultura de monoculturas e extração ilegal de madeira. Ao mapear essas áreas de degradação, é possível quantificar as emissões de carbono liberadas e avaliar os danos irreversíveis à fauna e flora nativas.
+        </p>
+        <p class="importance-text">
+          Além de fornecer dados quantitativos, o monitoramento contínuo permite identificar áreas críticas de preservação e planejar ações de recuperação ambiental. Os alertas em tempo real do sistema DETER, combinados com os levantamentos anuais do PRODES, oferecem uma visão integrada que auxilia tanto órgãos governamentais quanto organizações não governamentais na formulação de políticas públicas eficazes e na implementação de projetos de reflorestamento estratégico.
+        </p>
+        <p class="importance-text">
+          Uma das principais funcionalidades da plataforma é a análise temporal que demonstra a evolução das áreas desmatadas ao longo dos anos, permitindo identificar tendências regionais e sazonais. Essa conexão direta entre dados históricos e alertas atuais cria uma base sólida para ações de mitigação, desde a criação de unidades de conservação até a fiscalização de atividades ilegais. Essas informações são cruciais para garantir a preservação da maior floresta tropical do mundo e seu papel fundamental na regulação climática global.
+        </p>
+        <div class="calculator-box">
+          <h3>Monitoramento em Tempo Real</h3>
+          <p>
+            Acompanhe os alertas diários do DETER e visualize as áreas de desmatamento detectadas por satélite. Identifique rapidamente as regiões mais críticas e acompanhe a evolução das áreas degradadas em tempo real.
+          </p>
+        </div>
+      </div>
+    </section>
+    <!-- BLANK SECTION -->
+    <section class="dashboard-section">
+  <div class="dashboard-wrapper">
+
+    <h2 class="section-title">
+      Dashboard <span class="title-green">PRODES</span> (Série Histórica)
+    </h2>
+
+    <div class="dashboard-iframe-container">
+      <iframe src="dashboard_prodes.html">
+      </iframe>
+    </div>
+
+  </div>
+</section>
+
+<section class="dashboard-section">
+  <div class="dashboard-wrapper">
+    
+    <h2 class="section-title">
+      Dashboard <span class="title-green">Preditivo</span> (Forecast)
+    </h2>
+    
+    <div class="dashboard-iframe-container">
+      <iframe src="dashboard_preditivo.html">
+      </iframe>
+    </div>
+    
+  </div>
+</section>
+
+<section class="dashboard-section">
+  <div class="dashboard-wrapper">
+    
+    <h2 class="section-title">
+      Dashboard <span class="title-green">DETER</span> (Tipos de Alerta)
+    </h2>
+    
+    <div class="dashboard-iframe-container">
+      <iframe src="dashboard_deter.html">
+      </iframe>
+    </div>
+    
+  </div>
+</section>
+
+<section class="dashboard-section">
+  <div class="dashboard-wrapper">
+    
+    <h2 class="section-title">
+      Análise de <span class="title-green">Performance</span> (Estrutura de Dados)
+    </h2>
+    
+    <div class="dashboard-iframe-container">
+      <iframe src="dashboard_performance.html">
+      </iframe>
+    </div>
+    
+  </div>
+</section>
+
+    <!-- FOOTER -->
+    <footer id="contato" class="site-footer">
+      <div class="footer-wrapper">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <h4>GREEN AMAZON</h4>
+            <p>Av. Marquês de São Vicente, 3001 - Água Branca, São Paulo - SP, 05077-080</p>
+          </div>
+          <div class="footer-col">
+            <h4>Contatos</h4>
+            <p>greenamazonbrasil@gmail.com</p>
+            <p>+55 11 9996-0002</p>
+          </div>
+          <div class="footer-col">
+            <h4>Links</h4>
+            <a href="#home">Home</a>
+            <a href="#sobre">Store</a>
+            <a href="#contato">Contact</a>
+          </div>
+          <div class="footer-col">
+            <h4>Outros</h4>
+            <a href="#">Políticas de Privacidade</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>Copyright © 2025 - Green Amazon</p>
+        </div>
+        <div class="footer-bar"></div>
+      </div>
+    </footer>
+  </main>
+  <!-- SLIDER SCRIPT -->
+  <script>
+    (function() {
+      const slides = document.querySelectorAll('.slide');
+      let current = 0;
+      let interval;
+      // Inicia com o primeiro slide visível
+      slides[current].classList.add('visible');
+      function show(index) {
+        slides.forEach((slide, i) => {
+          slide.classList.toggle('visible', i === index);
+        });
+      }
+      function nextSlide() {
+        current = (current + 1) % slides.length;
+        show(current);
+      }
+      function startSlider() {
+        // Inicia IMEDIATAMENTE a troca (sem esperar 3s no primeiro)
+        interval = setInterval(nextSlide, 3000);
+      }
+      function stopSlider() {
+        clearInterval(interval);
+      }
+      // Inicia o slider
+      startSlider();
+      // Pausa ao passar o mouse
+      const hero = document.querySelector('.hero');
+      hero.addEventListener('mouseenter', stopSlider);
+      hero.addEventListener('mouseleave', startSlider);
+      // Navegação por teclado
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') {
+          stopSlider();
+          nextSlide();
+          startSlider();
+        }
+        if (e.key === 'ArrowLeft') {
+          stopSlider();
+          current = (current - 1 + slides.length) % slides.length;
+          show(current);
+          startSlider();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
