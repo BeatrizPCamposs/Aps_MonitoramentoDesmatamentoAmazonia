@@ -1,0 +1,26 @@
+Resumo de Instalação para Python + Jupyter no VS Code
+
+1. Python
+   - Baixar do site oficial: https://www.python.org/downloads/
+   - Durante a instalação, marcar a opção "Add Python to PATH"
+   - Testar instalação no terminal do Windows:
+     > python --version
+
+2. VS Code
+   - Baixar do site oficial: https://code.visualstudio.com/
+   - Instalar extensões:
+     • Python (Microsoft)
+     • Jupyter (Microsoft)
+
+3. Bibliotecas Python
+   - Abrir o terminal do VS Code e rodar:
+     > pip install notebook
+     > pip install pandas
+     > pip install numpy
+     > pip install matplotlib
+     > pip install seaborn
+     > pip install scikit-learn
+
+Observações:
+- Essas bibliotecas permitem manipular dados, criar gráficos e aplicar Machine Learning.
+- O notebook Jupyter será usado dentro do VS Code para escrever e rodar o código Python de forma interativa.
